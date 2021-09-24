@@ -1,6 +1,5 @@
 <?php
 require_once 'db_connection.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,10 +29,23 @@ require_once 'db_connection.php';
              <!-- A <tbody>tag é usada para agrupar o conteúdo do corpo em uma tabela HTML. -->
                <tbody>
                    <tr>
-                       <td>Felipe</td>
-                       <td>felipe@gmail.com</td>
-                       <td>629999999</td>
-                       <td>Trindade</td>
+                       <?php
+                        $sql = "select * from usuario;";
+                        $res = mysqli_query($conn, $sql) or die ("erro ao tentar pesquisar");
+                        while ($rows = mysqli_fetch_array($res,$conn)) {
+                            $nome = $rows['nome_usuer'];
+                            $email = $rows['email_user'];
+                            $celular = $rows['celular_user'];
+                            $cidade = $rows['cidade_user'];
+                        }
+                        echo'
+                        <tr>
+                            <td>'.$nome.'</td>
+                            <th>E-mail</th>
+                            <th>Celular</th>
+                            <th>Cidade</th>
+                            <th>Ação</th>
+                        </tr>  ';//fim do echo.?>
                        <td>
                            <button type="button">Editar</button>
                            <button type="button">Excluir</button>

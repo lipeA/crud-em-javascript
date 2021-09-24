@@ -1,17 +1,14 @@
 <?php
 // configurações de uma banco local.
 $server = "localhost";
-$database = "banco_teste";
+$database = "banco_teste"; 
 $user = "root";
 $pass = "";
 
-// passando a string de conexão.
-$conn = mysqli_connect($server, $user, $pass);
-
-if (!$conn) {
-    //mensagem de erro ao conectar com o banco
-    die("Falha ao conectar com o bacno".mysqli_connect_error);
+try {
+    $conn = new PDO('mysql:host=localhost; dbname ='.$database,$user,$pass);
+} catch (PDOException $error) {
+    return "<h3> erro ão conectar com o banco.</h3>".$error->getMessage();
 }
-
 
 ?>
